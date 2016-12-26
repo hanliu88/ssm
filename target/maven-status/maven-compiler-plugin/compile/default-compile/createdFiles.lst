@@ -1,0 +1,5 @@
+com\demo\service\DemoService.class
+com\demo\bean\Demo.class
+com\demo\dao\DemoMapper.class
+com\demo\service\impl\DemoServiceImpl.class
+com\demo\controller\DemoController.class
