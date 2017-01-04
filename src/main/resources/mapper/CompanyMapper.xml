@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.dao.CompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.bean.Company" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="legal_represen" property="legalRepresen" jdbcType="VARCHAR" />
+    <result column="reg_code" property="regCode" jdbcType="VARCHAR" />
+    <result column="credit_code" property="creditCode" jdbcType="VARCHAR" />
+    <result column="reg_address" property="regAddress" jdbcType="VARCHAR" />
+    <result column="working_address" property="workingAddress" jdbcType="VARCHAR" />
+    <result column="reg_capital" property="regCapital" jdbcType="DOUBLE" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="establish_date" property="establishDate" jdbcType="VARCHAR" />
+    <result column="trade_type" property="tradeType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="attribution" property="attribution" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="approved_date" property="approvedDate" jdbcType="VARCHAR" />
+    <result column="credit_grade" property="creditGrade" jdbcType="TINYINT" />
+    <result column="dept_id" property="deptId" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="createdby" property="createdby" jdbcType="BIGINT" />
+    <result column="createat" property="createat" jdbcType="VARCHAR" />
+    <result column="modify_userid" property="modifyUserid" jdbcType="BIGINT" />
+    <result column="last_updated" property="lastUpdated" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_area" property="isArea" jdbcType="TINYINT" />
+    <result column="classify" property="classify" jdbcType="VARCHAR" />
+    <result column="company_orgid" property="companyOrgid" jdbcType="VARCHAR" />
+    <result column="traning_count" property="traningCount" jdbcType="BIGINT" />
+    <result column="enforcement_count" property="enforcementCount" jdbcType="BIGINT" />
+    <result column="meeting_count" property="meetingCount" jdbcType="BIGINT" />
+    <result column="change_sign" property="changeSign" jdbcType="TINYINT" />
+    <result column="change_date" property="changeDate" jdbcType="VARCHAR" />
+    <result column="logout_date" property="logoutDate" jdbcType="VARCHAR" />
+    <result column="create_type" property="createType" jdbcType="TINYINT" />
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.demo.bean.Company" extends="BaseResultMap" >
+    <result column="business_scope" property="businessScope" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_name, legal_represen, reg_code, credit_code, reg_address, working_address, 
+    reg_capital, type, establish_date, trade_type, status, attribution, start_date, end_date, 
+    approved_date, credit_grade, dept_id, org_id, createdby, createat, modify_userid, 
+    last_updated, remark, is_area, classify, company_orgid, traning_count, enforcement_count, 
+    meeting_count, change_sign, change_date, logout_date, create_type, area_code
+  </sql>
+  <sql id="Blob_Column_List" >
+    business_scope
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from enforcement_business_company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from enforcement_business_company
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.demo.bean.Company" >
+    insert into enforcement_business_company (id, company_name, legal_represen, 
+      reg_code, credit_code, reg_address, 
+      working_address, reg_capital, type, 
+      establish_date, trade_type, status, 
+      attribution, start_date, end_date, 
+      approved_date, credit_grade, dept_id, 
+      org_id, createdby, createat, 
+      modify_userid, last_updated, remark, 
+      is_area, classify, company_orgid, 
+      traning_count, enforcement_count, meeting_count, 
+      change_sign, change_date, logout_date, 
+      create_type, area_code, business_scope
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, #{legalRepresen,jdbcType=VARCHAR}, 
+      #{regCode,jdbcType=VARCHAR}, #{creditCode,jdbcType=VARCHAR}, #{regAddress,jdbcType=VARCHAR}, 
+      #{workingAddress,jdbcType=VARCHAR}, #{regCapital,jdbcType=DOUBLE}, #{type,jdbcType=VARCHAR}, 
+      #{establishDate,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{attribution,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, #{endDate,jdbcType=VARCHAR}, 
+      #{approvedDate,jdbcType=VARCHAR}, #{creditGrade,jdbcType=TINYINT}, #{deptId,jdbcType=BIGINT}, 
+      #{orgId,jdbcType=BIGINT}, #{createdby,jdbcType=BIGINT}, #{createat,jdbcType=VARCHAR}, 
+      #{modifyUserid,jdbcType=BIGINT}, #{lastUpdated,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{isArea,jdbcType=TINYINT}, #{classify,jdbcType=VARCHAR}, #{companyOrgid,jdbcType=VARCHAR}, 
+      #{traningCount,jdbcType=BIGINT}, #{enforcementCount,jdbcType=BIGINT}, #{meetingCount,jdbcType=BIGINT}, 
+      #{changeSign,jdbcType=TINYINT}, #{changeDate,jdbcType=VARCHAR}, #{logoutDate,jdbcType=VARCHAR}, 
+      #{createType,jdbcType=TINYINT}, #{areaCode,jdbcType=VARCHAR}, #{businessScope,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.bean.Company" >
+    insert into enforcement_business_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="legalRepresen != null" >
+        legal_represen,
+      </if>
+      <if test="regCode != null" >
+        reg_code,
+      </if>
+      <if test="creditCode != null" >
+        credit_code,
+      </if>
+      <if test="regAddress != null" >
+        reg_address,
+      </if>
+      <if test="workingAddress != null" >
+        working_address,
+      </if>
+      <if test="regCapital != null" >
+        reg_capital,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="establishDate != null" >
+        establish_date,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="attribution != null" >
+        attribution,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="approvedDate != null" >
+        approved_date,
+      </if>
+      <if test="creditGrade != null" >
+        credit_grade,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="createdby != null" >
+        createdby,
+      </if>
+      <if test="createat != null" >
+        createat,
+      </if>
+      <if test="modifyUserid != null" >
+        modify_userid,
+      </if>
+      <if test="lastUpdated != null" >
+        last_updated,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isArea != null" >
+        is_area,
+      </if>
+      <if test="classify != null" >
+        classify,
+      </if>
+      <if test="companyOrgid != null" >
+        company_orgid,
+      </if>
+      <if test="traningCount != null" >
+        traning_count,
+      </if>
+      <if test="enforcementCount != null" >
+        enforcement_count,
+      </if>
+      <if test="meetingCount != null" >
+        meeting_count,
+      </if>
+      <if test="changeSign != null" >
+        change_sign,
+      </if>
+      <if test="changeDate != null" >
+        change_date,
+      </if>
+      <if test="logoutDate != null" >
+        logout_date,
+      </if>
+      <if test="createType != null" >
+        create_type,
+      </if>
+      <if test="areaCode != null" >
+        area_code,
+      </if>
+      <if test="businessScope != null" >
+        business_scope,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresen != null" >
+        #{legalRepresen,jdbcType=VARCHAR},
+      </if>
+      <if test="regCode != null" >
+        #{regCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null" >
+        #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddress != null" >
+        #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="workingAddress != null" >
+        #{workingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="regCapital != null" >
+        #{regCapital,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="establishDate != null" >
+        #{establishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="attribution != null" >
+        #{attribution,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="approvedDate != null" >
+        #{approvedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creditGrade != null" >
+        #{creditGrade,jdbcType=TINYINT},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="createat != null" >
+        #{createat,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserid != null" >
+        #{modifyUserid,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdated != null" >
+        #{lastUpdated,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isArea != null" >
+        #{isArea,jdbcType=TINYINT},
+      </if>
+      <if test="classify != null" >
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="companyOrgid != null" >
+        #{companyOrgid,jdbcType=VARCHAR},
+      </if>
+      <if test="traningCount != null" >
+        #{traningCount,jdbcType=BIGINT},
+      </if>
+      <if test="enforcementCount != null" >
+        #{enforcementCount,jdbcType=BIGINT},
+      </if>
+      <if test="meetingCount != null" >
+        #{meetingCount,jdbcType=BIGINT},
+      </if>
+      <if test="changeSign != null" >
+        #{changeSign,jdbcType=TINYINT},
+      </if>
+      <if test="changeDate != null" >
+        #{changeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="logoutDate != null" >
+        #{logoutDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createType != null" >
+        #{createType,jdbcType=TINYINT},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        #{businessScope,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.bean.Company" >
+    update enforcement_business_company
+    <set >
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresen != null" >
+        legal_represen = #{legalRepresen,jdbcType=VARCHAR},
+      </if>
+      <if test="regCode != null" >
+        reg_code = #{regCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creditCode != null" >
+        credit_code = #{creditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddress != null" >
+        reg_address = #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="workingAddress != null" >
+        working_address = #{workingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="regCapital != null" >
+        reg_capital = #{regCapital,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="establishDate != null" >
+        establish_date = #{establishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="attribution != null" >
+        attribution = #{attribution,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="approvedDate != null" >
+        approved_date = #{approvedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creditGrade != null" >
+        credit_grade = #{creditGrade,jdbcType=TINYINT},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="createdby != null" >
+        createdby = #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="createat != null" >
+        createat = #{createat,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserid != null" >
+        modify_userid = #{modifyUserid,jdbcType=BIGINT},
+      </if>
+      <if test="lastUpdated != null" >
+        last_updated = #{lastUpdated,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isArea != null" >
+        is_area = #{isArea,jdbcType=TINYINT},
+      </if>
+      <if test="classify != null" >
+        classify = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="companyOrgid != null" >
+        company_orgid = #{companyOrgid,jdbcType=VARCHAR},
+      </if>
+      <if test="traningCount != null" >
+        traning_count = #{traningCount,jdbcType=BIGINT},
+      </if>
+      <if test="enforcementCount != null" >
+        enforcement_count = #{enforcementCount,jdbcType=BIGINT},
+      </if>
+      <if test="meetingCount != null" >
+        meeting_count = #{meetingCount,jdbcType=BIGINT},
+      </if>
+      <if test="changeSign != null" >
+        change_sign = #{changeSign,jdbcType=TINYINT},
+      </if>
+      <if test="changeDate != null" >
+        change_date = #{changeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="logoutDate != null" >
+        logout_date = #{logoutDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createType != null" >
+        create_type = #{createType,jdbcType=TINYINT},
+      </if>
+      <if test="areaCode != null" >
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        business_scope = #{businessScope,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.demo.bean.Company" >
+    update enforcement_business_company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      legal_represen = #{legalRepresen,jdbcType=VARCHAR},
+      reg_code = #{regCode,jdbcType=VARCHAR},
+      credit_code = #{creditCode,jdbcType=VARCHAR},
+      reg_address = #{regAddress,jdbcType=VARCHAR},
+      working_address = #{workingAddress,jdbcType=VARCHAR},
+      reg_capital = #{regCapital,jdbcType=DOUBLE},
+      type = #{type,jdbcType=VARCHAR},
+      establish_date = #{establishDate,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      attribution = #{attribution,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=VARCHAR},
+      approved_date = #{approvedDate,jdbcType=VARCHAR},
+      credit_grade = #{creditGrade,jdbcType=TINYINT},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      org_id = #{orgId,jdbcType=BIGINT},
+      createdby = #{createdby,jdbcType=BIGINT},
+      createat = #{createat,jdbcType=VARCHAR},
+      modify_userid = #{modifyUserid,jdbcType=BIGINT},
+      last_updated = #{lastUpdated,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_area = #{isArea,jdbcType=TINYINT},
+      classify = #{classify,jdbcType=VARCHAR},
+      company_orgid = #{companyOrgid,jdbcType=VARCHAR},
+      traning_count = #{traningCount,jdbcType=BIGINT},
+      enforcement_count = #{enforcementCount,jdbcType=BIGINT},
+      meeting_count = #{meetingCount,jdbcType=BIGINT},
+      change_sign = #{changeSign,jdbcType=TINYINT},
+      change_date = #{changeDate,jdbcType=VARCHAR},
+      logout_date = #{logoutDate,jdbcType=VARCHAR},
+      create_type = #{createType,jdbcType=TINYINT},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      business_scope = #{businessScope,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.bean.Company" >
+    update enforcement_business_company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      legal_represen = #{legalRepresen,jdbcType=VARCHAR},
+      reg_code = #{regCode,jdbcType=VARCHAR},
+      credit_code = #{creditCode,jdbcType=VARCHAR},
+      reg_address = #{regAddress,jdbcType=VARCHAR},
+      working_address = #{workingAddress,jdbcType=VARCHAR},
+      reg_capital = #{regCapital,jdbcType=DOUBLE},
+      type = #{type,jdbcType=VARCHAR},
+      establish_date = #{establishDate,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      attribution = #{attribution,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=VARCHAR},
+      approved_date = #{approvedDate,jdbcType=VARCHAR},
+      credit_grade = #{creditGrade,jdbcType=TINYINT},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      org_id = #{orgId,jdbcType=BIGINT},
+      createdby = #{createdby,jdbcType=BIGINT},
+      createat = #{createat,jdbcType=VARCHAR},
+      modify_userid = #{modifyUserid,jdbcType=BIGINT},
+      last_updated = #{lastUpdated,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_area = #{isArea,jdbcType=TINYINT},
+      classify = #{classify,jdbcType=VARCHAR},
+      company_orgid = #{companyOrgid,jdbcType=VARCHAR},
+      traning_count = #{traningCount,jdbcType=BIGINT},
+      enforcement_count = #{enforcementCount,jdbcType=BIGINT},
+      meeting_count = #{meetingCount,jdbcType=BIGINT},
+      change_sign = #{changeSign,jdbcType=TINYINT},
+      change_date = #{changeDate,jdbcType=VARCHAR},
+      logout_date = #{logoutDate,jdbcType=VARCHAR},
+      create_type = #{createType,jdbcType=TINYINT},
+      area_code = #{areaCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

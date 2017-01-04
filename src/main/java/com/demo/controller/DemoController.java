@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
+/*import com.alibaba.druid.support.logging.Log;
+import com.alibaba.druid.support.logging.LogFactory;*/
 import com.demo.service.DemoService;
 
 @Controller

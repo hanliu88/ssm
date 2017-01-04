@@ -32,4 +32,8 @@ public class Demo {
     public void setAge(Byte age) {
         this.age = age;
     }
+    public static void main(String[] args) {
+    	String autoCount=String.format("-%02d",Integer.valueOf("0"));
+    	System.out.println(autoCount);
+	}
 }
